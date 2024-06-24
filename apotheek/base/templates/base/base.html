@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +10,8 @@
     <link rel="stylesheet" href="{% static 'base/css/styles.css' %}">
     {% block csslink %}{% endblock csslink %}
 </head>
-  <body>
+
+<body>
     {% include "base/menu.html" %}
     {% if messages %}
     <div class="messages">
@@ -21,5 +23,6 @@
     <div class="content">
         {% block content %}{% endblock content%}
     </div>
-  </body>
+</body>
+
 </html>
