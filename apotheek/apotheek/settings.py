@@ -123,4 +123,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-"emmet.includeLanguages": {"django-html": "html",} # type: ignore
+# "emmet.includeLanguages": {"django-html": "html",} # type: ignore
