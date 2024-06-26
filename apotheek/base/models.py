@@ -14,21 +14,22 @@ class Profile(models.Model):
     def __str__(self):
         return self.User.username
 
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
-    
-#class Medicine(models.Model):
-    #Name = 
-    #Manufacturer = 
-    #Cures = 
-    #SideEffects = 
 
-#class Collection(models.Model):
-    #Medicine = 
-    #User = 
-    #Date = 
-    #Collected = 
-    #CollectedApproved = 
-    #CollectedApprovedBy = 
+# class Medicine(models.Model):
+    # Name =
+    # Manufacturer =
+    # Cures =
+    # SideEffects =
+
+# class Collection(models.Model):
+    # Medicine =
+    # User =
+    # Date =
+    # Collected =
+    # CollectedApproved =
+    # CollectedApprovedBy =
