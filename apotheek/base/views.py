@@ -4,6 +4,3 @@ from django.http import HttpResponse
 # Create your views here.
 def index(request):
     return render(request, "base/index.html")
-
-def say_hello(request):
-    return HttpResponse("Hello!")
