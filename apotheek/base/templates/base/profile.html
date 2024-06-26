@@ -1,0 +1,14 @@
+{% extends "base/base.html" %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ profile.user.username }}'s Profile</title>
+</head>
+<body>
+    <h1>{{ profile.user.username }}'s Profile</h1>
+    <p><strong>Bio:</strong> {{ profile.bio_text }}</p>
+    <p><strong>City:</strong> {{ profile.city }}</p>
+    <p><strong>Date of Birth:</strong> {{ profile.date_of_birth }}</p>
+</body>
+</html>
