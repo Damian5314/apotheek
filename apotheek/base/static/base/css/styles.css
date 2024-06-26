@@ -1,0 +1,41 @@
+body {
+    background-color: white;
+}
+
+body {
+    margin: 0;
+}
+
+.nav-container {
+    background-color: #002c55;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-left: 1rem;
+
+}
+
+.nav-item {
+    background-color: aqua;
+    margin: 0.5rem;
+}
+
+img {
+    height: 4rem;
+}
+
+a {
+    color: crimson;
+    font-style: italic;
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+a:hover {
+    color: darkgreen;
+    text-decoration: underline;
+}
+
+MenuText {
+    color: white;
+}
