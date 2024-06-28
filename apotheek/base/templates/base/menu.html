@@ -6,7 +6,9 @@
         <a href="{% url 'index' %}" class="nav-item">Home</a>
         {% if user.is_authenticated %}
             {% if user.is_staff %}
+                <a href="{% url 'unapproved_takeaways' %}" class"nav-item"> Niet-goedgekeurde afhaalacties</A>
             {% endif %}
+            <a class"nav-item">Afhaalacties</a>
             <a href="{% url 'profile'%}" class="nav-item">Profiel</a>
             <a href="{% url 'logout_user'%}" class="nav-item">Logout</a>
         {% else %}
