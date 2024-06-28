@@ -16,7 +16,6 @@ body {
 }
 
 .nav-item {
-    background-color: aqua;
     margin: 0.5rem;
 }
 
@@ -25,14 +24,14 @@ img {
 }
 
 a {
-    color: crimson;
+    color: white;
     font-style: italic;
     text-decoration: none;
     font-size: 2rem;
 }
 
 a:hover {
-    color: darkgreen;
+    color: blue;
     text-decoration: underline;
 }
 
