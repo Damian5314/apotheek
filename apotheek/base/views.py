@@ -68,3 +68,7 @@ def change_password(request):
     else:
         form = PasswordChangeForm(user=request.user)
     return render(request, 'base/change_password.html', {'form': form})
+
+@staff_member_required
+def unapproved_times(request):
+    return render(request, "base/unapproved_takeaways.html")

@@ -35,6 +35,18 @@ a:hover {
     text-decoration: underline;
 }
 
+b {
+    color: black;
+    font-style: italic;
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+b:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
 MenuText {
     color: white;
 }
