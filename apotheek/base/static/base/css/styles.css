@@ -50,3 +50,13 @@ a:hover {
 MenuText {
     color: white;
 }
+
+.apothekers {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.apotheker {
+    text-align: center;
+    margin: 2rem;
+}
