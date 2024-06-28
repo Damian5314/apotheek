@@ -11,7 +11,7 @@ from .models import Profile
 
 
 def profile(request):
-    profile = get_object_or_404(Profile, user=request.user)
+    profile = Profile.objects.get_or_create(User=request.user)
     return render(request, 'base/profile.html', {'profile': profile})
 
 
@@ -39,6 +39,7 @@ def logout_user(request):
     logout(request)
     return redirect('login')
 
+
 @login_required
 def change_password(request):
     if request.method == 'POST':
@@ -46,7 +47,7 @@ def change_password(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            return redirect('profile')
+            return redirect("profile")
     else:
         form = PasswordChangeForm(user=request.user)
     return render(request, 'base/change_password.html', {'form': form})

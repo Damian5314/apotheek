@@ -18,7 +18,8 @@ class Profile(models.Model):
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
+        Profile.objects.create(User=instance)
+
 
 class Medicine(models.Model):
     Name = models.CharField(max_length=100, blank=True)
@@ -29,13 +30,14 @@ class Medicine(models.Model):
     def __str__(self):
         return self.Name
 
+
 class Collection(models.Model):
     Medicine = models.ForeignKey(Medicine, on_delete=models.CASCADE)
     User = models.ForeignKey(User, on_delete=models.CASCADE)
     Date = models.DateField()
     Collected = models.BooleanField(default=False)
     CollectedApproved = models.BooleanField(default=False)
-    #CollectedApprovedBy = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='approved_collections')
+    # CollectedApprovedBy = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='approved_collections')
 
     def __str__(self):
         return f"{self.User.username} - {self.Medicine.Name}"
