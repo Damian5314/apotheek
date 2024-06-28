@@ -71,7 +71,7 @@ def change_password(request):
 
 
 @staff_member_required
-def unapproved_times(request):
+def unapproved_takeaways(request):
     return render(request, "base/unapproved_takeaways.html")
 
 
