@@ -35,7 +35,7 @@ class Collection(models.Model):
     Date = models.DateField()
     Collected = models.BooleanField(default=False)
     CollectedApproved = models.BooleanField(default=False)
-    CollectedApprovedBy = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='approved_collections')
+    #CollectedApprovedBy = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='approved_collections')
 
     def __str__(self):
         return f"{self.User.username} - {self.Medicine.Name}"
