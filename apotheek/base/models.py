@@ -21,15 +21,15 @@ def create_user_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
 
 class Medicine(models.Model):
-    Name = models.CharField()
-    Manufacturer = models.CharField()
-    Cures = models.CharField()
-    SideEffects = models.CharField()
+    Name = models.CharField(max_length=30, blank=True)
+    Manufacturer = models.CharField(max_length=30, blank=True)
+    Cures = models.CharField(max_length=30, blank=True)
+    SideEffects = models.CharField(max_length=30, blank=True)
 
 class Collection(models.Model):
-    Medicine = models.CharField()
+    Medicine = models.CharField(max_length=30, blank=True)
     User = models.ForeignKey(User, on_delete=models.CASCADE)
     # Date =
     # Collected =
     CollectedApproved = models.BooleanField(default=False)
-    CollectedApprovedBy = models.ForeignKey(User, on_delete=models.CASCADE, related_name='approved_by', null=True, blank=True)
+    #CollectedApprovedBy = models.ForeignKey(User, on_delete=models.CASCADE, related_name='approved_by', null=True, blank=True)
