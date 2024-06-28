@@ -12,7 +12,7 @@ from .models import Profile
 
 def profile(request):
     profile = get_object_or_404(Profile, user=request.user)
-    return render(request, 'profile.html', {'profile': profile})
+    return render(request, 'base/profile.html', {'profile': profile})
 
 
 def index(request):
