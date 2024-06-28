@@ -5,6 +5,6 @@
 <p><strong>Bio:</strong> {{ profile.BioText }}</p>
 <p><strong>City:</strong> {{ profile.City }}</p>
 <p><strong>Date of Birth:</strong> {{ profile.DateOfBirth }}</p>
-<a href="{% url 'edit_profile' %}" class="nav-item black-link">Profiel bewerken</a><br>
-<a href="{% url 'change_password' %}" class="nav-item black-link">Wachtwoord aanpassen</a>
+<a href="{% url 'edit_profile' %}" class="nav-item black-link"><button><strong>Profiel bewerken</strong></button></a><br>
+<a href="{% url 'change_password' %}" class="nav-item black-link"><button><strong>Wachtwoord aanpassen</strong></button></a>
 {% endblock %}
