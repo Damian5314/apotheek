@@ -35,14 +35,14 @@ a:hover {
     text-decoration: underline;
 }
 
-b {
+.black-link {
     color: black;
     font-style: italic;
     text-decoration: none;
     font-size: 2rem;
 }
 
-b:hover {
+.black-link:hover {
     color: blue;
     text-decoration: underline;
 }
