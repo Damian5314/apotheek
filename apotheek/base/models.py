@@ -9,7 +9,7 @@ class Profile(models.Model):
     User = models.OneToOneField(User, on_delete=models.CASCADE)
     BioText = models.TextField(blank=True)
     City = models.CharField(max_length=100)
-    DateOfBirth = models.DateField()
+    DateOfBirth = models.DateField(default='2000-01-01')
 
     def __str__(self):
         return self.User.username

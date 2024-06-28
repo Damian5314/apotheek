@@ -1,0 +1,25 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+<h1>Mijn Afhaalacties</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Medicijn</th>
+            <th>Datum</th>
+            <th>Afgehaald</th>
+            <th>Goedgekeurd</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for collection in collections %}
+        <tr>
+            <td>{{ collection.Medicine.Name }}</td>
+            <td>{{ collection.Date }}</td>
+            <td>{{ collection.Collected|yesno:"Ja,Nee" }}</td>
+            <td>{{ collection.CollectedApproved|yesno:"Ja,Nee" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

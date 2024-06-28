@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from .models import Profile
+from .models import Profile, Collection
 from .forms import ProfileForm
 
 # Create your views here.
@@ -69,6 +69,13 @@ def change_password(request):
         form = PasswordChangeForm(user=request.user)
     return render(request, 'base/change_password.html', {'form': form})
 
+
 @staff_member_required
 def unapproved_times(request):
     return render(request, "base/unapproved_takeaways.html")
+
+
+@login_required
+def afhaalacties(request):
+    collections = Collection.objects.filter(User=request.user)
+    return render(request, 'base/afhaalacties.html', {'collections': collections})
