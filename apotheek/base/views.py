@@ -10,8 +10,9 @@ from .models import Profile
 # Create your views here.
 
 
+@login_required
 def profile(request):
-    profile = Profile.objects.get_or_create(User=request.user)
+    profile, created = Profile.objects.get_or_create(User=request.user)
     return render(request, 'base/profile.html', {'profile': profile})
 
 

@@ -1,9 +1,8 @@
 {% extends "base/base.html" %}
 
-<body>
-    <h1>{{ profile.User.username }}'s Profile</h1>
-    <p><strong>Bio:</strong> {{ profile.BioText }}</p>
-    <p><strong>City:</strong> {{ profile.City }}</p>
-    <p><strong>Date of Birth:</strong> {{ profile.DateOfBirth }}</p>
-</body>
-</html>
+{% block content %}
+<h1>{{ profile.User.username }}'s Profiel</h1>
+<p><strong>Bio:</strong> {{ profile.BioText }}</p>
+<p><strong>City:</strong> {{ profile.City }}</p>
+<p><strong>Date of Birth:</strong> {{ profile.DateOfBirth }}</p>
+{% endblock %}
