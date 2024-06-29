@@ -132,7 +132,7 @@ def confirm_afhaalacties(request):
         return redirect('confirm_afhaalacties')
     else:
         collections = Collection.objects.filter(
-            collected=True, collected_approved=False)
+            Collected=True, CollectedApproved=False)
         return render(request, 'base/confirm_afhaalacties.html', {'collections': collections})
 
 
