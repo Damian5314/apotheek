@@ -60,3 +60,17 @@ MenuText {
     text-align: center;
     margin: 2rem;
 }
+
+.medicine-item {
+    margin-bottom: 20px;
+}
+
+.medicine-item h5 {
+    display: inline;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.medicine-item p {
+    display: inline;
+}

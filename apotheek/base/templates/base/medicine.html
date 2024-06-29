@@ -6,9 +6,11 @@
         <a href="{% url 'new_medicine' %}" class="nav-item black-link"><button><strong>Nieuwe medicijn toevoegen</strong></button></a>
     {% endif %}
     {% for medicine in medicines %}
-        <h5>Name: </h5> {{ medicine.Name }}<br>
-        <h5>Manufacturer: </h5> {{ medicine.Manufacturer }}<br>
-        <h5>Cures: </h5> {{ medicine.Cures }}<br>
-        <h5>Side effects: </h5> {{ medicine.SideEffects }}<br>
+        <div class="medicine-item">
+            <h5>Name:</h5> <p>{{ medicine.Name }}</p> <br>
+            <h5>Manufacturer:</h5> <p>{{ medicine.Manufacturer }}</p> <br>
+            <h5>Cures:</h5> <p>{{ medicine.Cures }}</p> <br>
+            <h5>Side effects:</h5> <p>{{ medicine.SideEffects }}</p> <br>
+        </div>
     {% endfor %}
 {% endblock %}
