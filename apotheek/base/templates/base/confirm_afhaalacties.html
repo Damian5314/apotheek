@@ -1,34 +1,37 @@
 {% extends "base/base.html" %}
 
 {% block content %}
-<h1>Mijn Afhaalacties</h1>
-<form method="post" action="{% url 'afhaalacties' %}">
+<h1>Beheer Afhaalacties</h1>
+<form method="post" action="{% url 'confirm_afhaalacties' %}">
     {% csrf_token %}
     <table>
         <thead>
             <tr>
+                <th>Gebruiker</th>
                 <th>Medicijn</th>
                 <th>Datum</th>
                 <th>Afgehaald</th>
                 <th>Goedgekeurd</th>
-                <th>Selecteren</th>
+                <th>Bevestigen</th>
             </tr>
         </thead>
         <tbody>
             {% for collection in collections %}
             <tr>
+                <td>{{ collection.user.username }}</td>
                 <td>{{ collection.medicine.name }}</td>
                 <td>{{ collection.date }}</td>
                 <td>{{ collection.collected|yesno:"Ja,Nee" }}</td>
                 <td>{{ collection.collected_approved|yesno:"Ja,Nee" }}</td>
                 <td>
-                    {% if not collection.collected %}
-                        <input type="checkbox" name="collection_{{ collection.id }}" value="true">
+                    {% if collection.collected and not collection.collected_approved %}
+                        <input type="checkbox" name="approve_{{ collection.id }}" value="true">
                     {% endif %}
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    <button type="submit">Bevestigen</button>
 </form>
 {% endblock %}

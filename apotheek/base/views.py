@@ -5,8 +5,8 @@ from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from .models import Profile, Collection
-from .forms import ProfileForm
+from .models import Profile, Collection, Medicine, User
+from .forms import ProfileForm, CollectionForm
 
 # Create your views here.
 
@@ -79,3 +79,58 @@ def unapproved_takeaways(request):
 def afhaalacties(request):
     collections = Collection.objects.filter(User=request.user)
     return render(request, 'base/afhaalacties.html', {'collections': collections})
+
+
+@login_required
+def update_afhaalacties(request):
+    if request.method == 'POST':
+        for key, value in request.POST.items():
+            if key.startswith('collection_'):
+                collection_id = key.split('_')[1]
+                collection = Collection.objects.get(
+                    id=collection_id, user=request.user)
+                if value == 'true':
+                    collection.collected = True
+                    collection.save()
+        return redirect('afhaalacties')
+    else:
+        collections = Collection.objects.filter(User=request.user)
+        return render(request, 'base/afhaalacties.html', {'collections': collections})
+
+
+@staff_member_required
+def manage_collections(request):
+    if request.method == 'POST':
+        form = CollectionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_collections')
+    else:
+        form = CollectionForm()
+    collections = Collection.objects.all()
+    users = User.objects.all()
+    medicines = Medicine.objects.all()
+    return render(request, 'base/manage_collections.html', {
+        'form': form,
+        'collections': collections,
+        'users': users,
+        'medicines': medicines,
+    })
+
+
+@staff_member_required
+def confirm_afhaalacties(request):
+    if request.method == 'POST':
+        # Iterate through all collection instances for approval
+        for key, value in request.POST.items():
+            if key.startswith('approve_'):
+                collection_id = key.split('_')[1]
+                collection = Collection.objects.get(id=collection_id)
+                if value == 'true':
+                    collection.collected_approved = True
+                    collection.save()
+        return redirect('confirm_afhaalacties')
+    else:
+        collections = Collection.objects.filter(
+            collected=True, collected_approved=False)
+        return render(request, 'base/confirm_afhaalacties.html', {'collections': collections})

@@ -1,0 +1,36 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+<h2>Beheer afhaalacties</h2>
+
+<h3>Nieuwe afhaalactie aanmaken</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Toevoegen</button>
+</form>
+
+<h3>Bestaande afhaalacties</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Gebruiker</th>
+            <th>Medicijn</th>
+            <th>Datum</th>
+            <th>Afgehaald</th>
+            <th>Goedgekeurd</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for collection in collections %}
+        <tr>
+            <td>{{ collection.User.username }}</td>
+            <td>{{ collection.Medicine.name }}</td>
+            <td>{{ collection.Date }}</td>
+            <td>{{ collection.collected|yesno:"Ja,Nee" }}</td>
+            <td>{{ collection.collected_approved|yesno:"Ja,Nee" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

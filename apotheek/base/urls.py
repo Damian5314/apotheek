@@ -12,5 +12,9 @@ urlpatterns = [
     path('accounts/profile/', views.profile, name='profile'),
     path('unapproved_takeaways/', views.unapproved_takeaways,
          name='unapproved_takeaways'),
-    path('afhaalacties/', views.afhaalacties, name='afhaalacties'),
+    path('afhaalacties/', views.update_afhaalacties, name='afhaalacties'),
+    path('confirm_afhaalacties/', views.confirm_afhaalacties,
+         name='confirm_afhaalacties'),
+    path('manage_collections/', views.manage_collections,
+         name='manage_collections'),
 ]
