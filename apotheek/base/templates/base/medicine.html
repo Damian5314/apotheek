@@ -7,10 +7,10 @@
     {% endif %}
     {% for medicine in medicines %}
         <div class="medicine-item">
-            <h5>Name:</h5> <p>{{ medicine.Name }}</p>
-            <h5>Manufacturer:</h5> <p>{{ medicine.Manufacturer }}</p>
-            <h5>Cures:</h5> <p>{{ medicine.Cures }}</p>
-            <h5>Side effects:</h5> <p>{{ medicine.SideEffects }}</p>
+            <h5>Name:</h5> <p>{{ medicine.Name }}</p> <br>
+            <h5>Manufacturer:</h5> <p>{{ medicine.Manufacturer }}</p> <br>
+            <h5>Cures:</h5> <p>{{ medicine.Cures }}</p> <br>
+            <h5>Side effects:</h5> <p>{{ medicine.SideEffects }}</p> <br>
         </div>
     {% endfor %}
 {% endblock %}
