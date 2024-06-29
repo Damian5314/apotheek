@@ -97,8 +97,17 @@ def manage_collections(request):
     if request.method == 'POST':
         form = CollectionForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('manage_collections')
+            user = form.cleaned_data['User']
+            medicine = form.cleaned_data['Medicine']
+            date = form.cleaned_data['Date']
+
+            # Check if a collection for the same user, medicine, and date already exists
+            if Collection.objects.filter(User=user, Medicine=medicine, Date=date).exists():
+                form.add_error(
+                    None, "Een afhaalactie voor deze gebruiker, dit medicijn en deze datum bestaat al.")
+            else:
+                form.save()
+                return redirect('manage_collections')
     else:
         form = CollectionForm()
     collections = Collection.objects.all()
