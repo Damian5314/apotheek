@@ -70,11 +70,6 @@ def change_password(request):
     return render(request, 'base/change_password.html', {'form': form})
 
 
-@staff_member_required
-def unapproved_takeaways(request):
-    return render(request, "base/unapproved_takeaways.html")
-
-
 @login_required
 def afhaalacties(request):
     collections = Collection.objects.filter(User=request.user)
@@ -84,14 +79,13 @@ def afhaalacties(request):
 @login_required
 def update_afhaalacties(request):
     if request.method == 'POST':
-        for key, value in request.POST.items():
+        for key in request.POST:
             if key.startswith('collection_'):
                 collection_id = key.split('_')[1]
                 collection = Collection.objects.get(
-                    id=collection_id, user=request.user)
-                if value == 'true':
-                    collection.collected = True
-                    collection.save()
+                    id=collection_id, User=request.user)
+                collection.Collected = True
+                collection.save()
         return redirect('afhaalacties')
     else:
         collections = Collection.objects.filter(User=request.user)
@@ -121,7 +115,6 @@ def manage_collections(request):
 @staff_member_required
 def confirm_afhaalacties(request):
     if request.method == 'POST':
-        # Iterate through all collection instances for approval
         for key, value in request.POST.items():
             if key.startswith('approve_'):
                 collection_id = key.split('_')[1]
@@ -160,3 +153,29 @@ def new_medicine(request):
 
     context = {"form": form}
     return render(request, "base/new_medicine.html", context)
+
+
+@staff_member_required
+def confirm_afhaalacties(request):
+    collections = Collection.objects.filter(
+        Collected=True, CollectedApproved=False)
+    return render(request, 'base/confirm_afhaalacties.html', {'collections': collections})
+
+
+@staff_member_required
+def approve_afhaalactie(request, pk):
+    collection = get_object_or_404(Collection, pk=pk)
+    collection.CollectedApproved = True
+    collection.save()
+    messages.success(request, "Afhaalactie goedgekeurd.")
+    return redirect('confirm_afhaalacties')
+
+
+@staff_member_required
+def deny_afhaalactie(request, pk):
+    collection = get_object_or_404(Collection, pk=pk)
+    collection.Collected = False
+    collection.CollectedApproved = False
+    collection.save()
+    messages.success(request, "Afhaalactie geweigerd")
+    return redirect('confirm_afhaalacties')
