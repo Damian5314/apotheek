@@ -5,8 +5,8 @@ from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from .models import Profile, Collection
-from .forms import ProfileForm
+from .models import Profile, Collection, Medicine
+from .forms import ProfileForm, MedicineForm
 
 # Create your views here.
 
@@ -79,3 +79,26 @@ def unapproved_takeaways(request):
 def afhaalacties(request):
     collections = Collection.objects.filter(User=request.user)
     return render(request, 'base/afhaalacties.html', {'collections': collections})
+
+@login_required
+def medicine(request):
+    medicines = Medicine.objects.all()
+    context = {"medicines": medicines}
+    return render(request, 'base/medicine.html', context)
+
+@staff_member_required
+def new_medicine(request):
+    if request.method == "POST":
+        form = MedicineForm(request.POST)
+        if form.is_valid():
+            medicine = form.save(commit=False)
+            medicine.save()
+            messages.success(request, "Medicijn succesvol toegevoegd")
+            return redirect("new_medicine")
+        else:
+            messages.error(request, "Er is een fout opgetreden. Probeer het opnieuw.")
+    else:
+        form = MedicineForm()
+
+    context = {"form": form}
+    return render(request, "base/new_medicine.html", context)

@@ -12,4 +12,6 @@ urlpatterns = [
     path('accounts/profile/', views.profile, name='profile'),
     path('unapproved_takeaways/', views.unapproved_takeaways, name='unapproved_takeaways'),
     path('afhaalacties/', views.afhaalacties, name='afhaalacties'),
+    path('medicine/', views.medicine, name='medicine'),
+    path('new_medicine/', views.new_medicine, name='new_medicine'),
 ]
