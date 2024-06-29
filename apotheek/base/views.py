@@ -41,7 +41,6 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            # Log the user in and redirect to index
             login(request, user)
             return redirect("index")
 
@@ -93,7 +92,7 @@ def update_afhaalacties(request):
 
 
 @staff_member_required
-def manage_collections(request):
+def manage_collections(request, medicine_id=None):
     if request.method == 'POST':
         form = CollectionForm(request.POST)
         if form.is_valid():
@@ -101,15 +100,18 @@ def manage_collections(request):
             medicine = form.cleaned_data['Medicine']
             date = form.cleaned_data['Date']
 
-            # Check if a collection for the same user, medicine, and date already exists
             if Collection.objects.filter(User=user, Medicine=medicine, Date=date).exists():
-                form.add_error(
-                    None, "Een afhaalactie voor deze gebruiker, dit medicijn en deze datum bestaat al.")
+                form.add_error(None, "Een afhaalactie voor deze gebruiker, dit medicijn en deze datum bestaat al.")
             else:
                 form.save()
                 return redirect('manage_collections')
     else:
-        form = CollectionForm()
+        if medicine_id:
+            medicine = get_object_or_404(Medicine, id=medicine_id)
+            form = CollectionForm(initial={'Medicine': medicine})
+        else:
+            form = CollectionForm()
+
     collections = Collection.objects.all()
     users = User.objects.all()
     medicines = Medicine.objects.all()

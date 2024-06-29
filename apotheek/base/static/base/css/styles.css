@@ -10,7 +10,7 @@ body {
     background-color: #002c55;
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
     padding-left: 1rem;
 
 }
@@ -27,7 +27,7 @@ a {
     color: white;
     font-style: italic;
     text-decoration: none;
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 
 a:hover {
