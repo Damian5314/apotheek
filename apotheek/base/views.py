@@ -101,7 +101,8 @@ def manage_collections(request, medicine_id=None):
             date = form.cleaned_data['Date']
 
             if Collection.objects.filter(User=user, Medicine=medicine, Date=date).exists():
-                form.add_error(None, "Een afhaalactie voor deze gebruiker, dit medicijn en deze datum bestaat al.")
+                form.add_error(
+                    None, "Een afhaalactie voor deze gebruiker, dit medicijn en deze datum bestaat al.")
             else:
                 form.save()
                 return redirect('manage_collections')
@@ -143,6 +144,16 @@ def confirm_afhaalacties(request):
 @login_required
 def medicine(request):
     medicines = Medicine.objects.all()
+
+    if request.user.is_staff:
+        for medicine in medicines:
+            medicine.collection_count = Collection.objects.filter(
+                Medicine=medicine, CollectedApproved=True).count()
+    else:
+        for medicine in medicines:
+            medicine.collection_count = Collection.objects.filter(
+                Medicine=medicine, User=request.user, CollectedApproved=True).count()
+
     context = {"medicines": medicines}
     return render(request, 'base/medicine.html', context)
 

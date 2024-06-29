@@ -1,7 +1,7 @@
 {% extends "base/base.html" %}
 
 {% block content %}
-    <h1> Medicijnen </h1>
+    <h1>Medicijnen</h1>
     {% if user.is_staff %}
         <a href="{% url 'new_medicine' %}" class="nav-item black-link"><button><strong>Nieuwe medicijn toevoegen</strong></button></a>
     {% endif %}
@@ -11,8 +11,9 @@
             <h5>Manufacturer:</h5> <p>{{ medicine.Manufacturer }}</p> <br>
             <h5>Cures:</h5> <p>{{ medicine.Cures }}</p> <br>
             <h5>Side effects:</h5> <p>{{ medicine.SideEffects }}</p> <br>
+            <h5>Afgehaald:</h5> <p>{{ medicine.collection_count }} keer</p> <br>
             {% if user.is_staff %}
-            <a href="{% url 'manage_collections_with_medicine' medicine.id %}" class="nav-item black-link"><button><strong>Afhaalactie maken</strong></button></a>
+                <a href="{% url 'manage_collections_with_medicine' medicine.id %}" class="nav-item black-link"><button><strong>Afhaalactie maken</strong></button></a>
                 <a href="{% url 'edit_medicine' medicine.id %}" class="nav-item black-link"><button><strong>Aanpassen</strong></button></a>
                 <a href="{% url 'delete_medicine' medicine.id %}" class="nav-item black-link"><button><strong>Verwijderen</strong></button></a><br>
             {% endif %}
