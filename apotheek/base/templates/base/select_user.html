@@ -1,0 +1,26 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+<h2>Selecteer een gebruiker</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Gebruiker</th>
+            <th>Acties</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>
+                <a href="{% url 'user_history' user.id %}"><button><strong>Bekijk Geschiedenis</strong></button></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'manage_collections' %}"><button><strong>Terug naar Beheer afhaalacties</strong><button></a>
+{% endblock %}

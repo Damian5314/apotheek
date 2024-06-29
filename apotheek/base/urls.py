@@ -26,5 +26,8 @@ urlpatterns = [
     path('medicine/', views.medicine, name='medicine'),
     path('new_medicine/', views.new_medicine, name='new_medicine'),
     path('edit_medicine/<int:pk>/', views.edit_medicine, name='edit_medicine'),
-    path('delete_medicine/<int:pk>/', views.delete_medicine, name='delete_medicine'),
+    path('delete_medicine/<int:pk>/',
+         views.delete_medicine, name='delete_medicine'),
+    path('select_user/', views.select_user, name='select_user'),
+    path('user_history/<int:user_id>/', views.user_history, name='user_history'),
 ]

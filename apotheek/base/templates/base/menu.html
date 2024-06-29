@@ -8,6 +8,7 @@
             {% if user.is_staff %}
                 <a href="{% url 'confirm_afhaalacties' %}" class"nav-item"> Niet-goedgekeurde afhaalacties</A>
                 <a href="{% url 'manage_collections' %}" class"nav-item"> Afhaalactie Klaarzetten</A>
+                <a href="{% url 'select_user' %}" class="nav-item">Gebruiker Geschiedenis</a>
             {% endif %}
             <a href="{% url 'afhaalacties' %}" class="nav-item">Afhaalacties</a>
             <a href="{% url 'medicine' %}" class="nav-item">Medicijnen</a>

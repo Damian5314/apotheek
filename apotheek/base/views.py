@@ -220,3 +220,16 @@ def delete_medicine(request, pk):
         medicine.delete()
         return redirect('medicine')
     return render(request, 'base/delete_medicine.html', {'medicine': medicine})
+
+
+@staff_member_required
+def select_user(request):
+    users = User.objects.all()
+    return render(request, 'base/select_user.html', {'users': users})
+
+
+@staff_member_required
+def user_history(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+    collections = Collection.objects.filter(User=user).order_by('-Date')
+    return render(request, 'base/user_history.html', {'user': user, 'collections': collections})
