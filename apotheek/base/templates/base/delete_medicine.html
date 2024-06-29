@@ -1,0 +1,11 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+    <h1>Bevestig Verwijdering</h1>
+    <p>Weet u zeker dat u het medicijn "{{ medicine.Name }}" wilt verwijderen?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Ja, verwijderen</button>
+        <a href="{% url 'medicine_list' %}"><button type="button">Nee, terug</button></a>
+    </form>
+{% endblock %}

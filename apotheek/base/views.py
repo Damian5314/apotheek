@@ -160,3 +160,31 @@ def new_medicine(request):
 
     context = {"form": form}
     return render(request, "base/new_medicine.html", context)
+
+@staff_member_required
+def edit_medicine(request, pk):
+    medicine = get_object_or_404(Medicine, pk=pk)
+
+    if request.method == "POST":
+        form = MedicineForm(request.POST, instance=medicine)
+        name = request.POST.get("Name")
+        does_name_exist = Medicine.objects.filter(Name=name).exclude(pk=pk).exists()
+        if does_name_exist:
+            form.add_error("Name", "Deze naam bestaat al voor een andere medicijn")
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Medicijn aangepast!")
+            return redirect("medicine")
+    else:
+        form = MedicineForm(instance=medicine)
+
+    context = {"form": form}
+    return render(request, "base/edit_medicine.html", context)
+
+@staff_member_required
+def delete_medicine(request, pk):
+    medicine = get_object_or_404(Medicine, pk=pk)
+    if request.method == 'POST':
+        medicine.delete()
+        return redirect('medicine_list')
+    return render(request, 'delete_medicine.html', {'medicine': medicine})
