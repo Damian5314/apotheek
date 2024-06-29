@@ -13,7 +13,7 @@
             <h5>Side effects:</h5> <p>{{ medicine.SideEffects }}</p> <br>
             {% if user.is_staff %}
                 <a href="{% url 'edit_medicine' medicine.id %}" class="nav-item black-link"><button><strong>Aanpassen</strong></button></a>
-                <a href="{% url 'delete_medicine' medicine.id %}" class="nav-item black-link"><button><strong>Verwijderen</strong></button><a/><br>
+                <a href="{% url 'delete_medicine' medicine.id %}" class="nav-item black-link"><button><strong>Verwijderen</strong></button></a><br>
             {% endif %}
         </div>
     {% endfor %}

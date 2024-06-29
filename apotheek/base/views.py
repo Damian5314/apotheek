@@ -186,5 +186,5 @@ def delete_medicine(request, pk):
     medicine = get_object_or_404(Medicine, pk=pk)
     if request.method == 'POST':
         medicine.delete()
-        return redirect('medicine_list')
-    return render(request, 'delete_medicine.html', {'medicine': medicine})
+        return redirect('medicine')
+    return render(request, 'base/delete_medicine.html', {'medicine': medicine})
