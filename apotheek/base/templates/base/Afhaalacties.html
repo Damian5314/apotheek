@@ -17,10 +17,10 @@
         <tbody>
             {% for collection in collections %}
             <tr>
-                <td>{{ collection.medicine.name }}</td>
-                <td>{{ collection.date }}</td>
-                <td>{{ collection.collected|yesno:"Ja,Nee" }}</td>
-                <td>{{ collection.collected_approved|yesno:"Ja,Nee" }}</td>
+                <td>{{ collection.Medicine.Name }}</td>
+                <td>{{ collection.Date }}</td>
+                <td>{{ collection.Collected|yesno:"Ja,Nee" }}</td>
+                <td>{{ collection.CollectedApproved|yesno:"Ja,Nee" }}</td>
                 <td>
                     {% if not collection.collected %}
                         <input type="checkbox" name="collection_{{ collection.id }}" value="true">

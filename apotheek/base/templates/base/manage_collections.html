@@ -25,7 +25,7 @@
         {% for collection in collections %}
         <tr>
             <td>{{ collection.User.username }}</td>
-            <td>{{ collection.Medicine.name }}</td>
+            <td>{{ collection.Medicine.Name }}</td>
             <td>{{ collection.Date }}</td>
             <td>{{ collection.collected|yesno:"Ja,Nee" }}</td>
             <td>{{ collection.collected_approved|yesno:"Ja,Nee" }}</td>
