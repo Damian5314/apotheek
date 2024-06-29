@@ -17,4 +17,6 @@ urlpatterns = [
          name='confirm_afhaalacties'),
     path('manage_collections/', views.manage_collections,
          name='manage_collections'),
+    path('medicine/', views.medicine, name='medicine'),
+    path('new_medicine/', views.new_medicine, name='new_medicine'),
 ]

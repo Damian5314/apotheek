@@ -1,0 +1,14 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+    <h1> Medicijnen </h1>
+    {% if user.is_staff %}
+        <a href="{% url 'new_medicine' %}" class="nav-item black-link"><button><strong>Nieuwe medicijn toevoegen</strong></button></a>
+    {% endif %}
+    {% for medicine in medicines %}
+        <h5>Name: </h5> {{ medicine.Name }}<br>
+        <h5>Manufacturer: </h5> {{ medicine.Manufacturer }}<br>
+        <h5>Cures: </h5> {{ medicine.Cures }}<br>
+        <h5>Side effects: </h5> {{ medicine.SideEffects }}<br>
+    {% endfor %}
+{% endblock %}

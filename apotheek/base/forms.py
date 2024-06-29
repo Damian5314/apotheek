@@ -1,5 +1,5 @@
 from django import forms
-from .models import Profile, Collection
+from .models import Profile, Collection, Medicine
 
 
 class ProfileForm(forms.ModelForm):
@@ -18,3 +18,9 @@ class CollectionForm(forms.ModelForm):
         widgets = {
             'Date': forms.DateInput(attrs={'type': 'date'}),
         }
+
+
+class MedicineForm(forms.ModelForm):
+    class Meta:
+        model = Medicine
+        fields = ["Name", "Manufacturer", "Cures", "SideEffects"]

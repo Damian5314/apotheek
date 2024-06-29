@@ -6,7 +6,7 @@ from django.contrib.auth import login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from .models import Profile, Collection, Medicine, User
-from .forms import ProfileForm, CollectionForm
+from .forms import ProfileForm, CollectionForm, MedicineForm
 
 # Create your views here.
 
@@ -134,3 +134,29 @@ def confirm_afhaalacties(request):
         collections = Collection.objects.filter(
             collected=True, collected_approved=False)
         return render(request, 'base/confirm_afhaalacties.html', {'collections': collections})
+
+
+@login_required
+def medicine(request):
+    medicines = Medicine.objects.all()
+    context = {"medicines": medicines}
+    return render(request, 'base/medicine.html', context)
+
+
+@staff_member_required
+def new_medicine(request):
+    if request.method == "POST":
+        form = MedicineForm(request.POST)
+        if form.is_valid():
+            medicine = form.save(commit=False)
+            medicine.save()
+            messages.success(request, "Medicijn succesvol toegevoegd")
+            return redirect("new_medicine")
+        else:
+            messages.error(
+                request, "Er is een fout opgetreden. Probeer het opnieuw.")
+    else:
+        form = MedicineForm()
+
+    context = {"form": form}
+    return render(request, "base/new_medicine.html", context)
