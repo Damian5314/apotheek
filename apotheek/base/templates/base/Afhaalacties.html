@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>Mijn Afhaalacties</h1>
-<form method="post" action="{% url 'afhaalacties' %}">
+<form method="post" action="{% url 'update_afhaalacties' %}">
     {% csrf_token %}
     <table>
         <thead>
@@ -22,7 +22,7 @@
                 <td>{{ collection.Collected|yesno:"Ja,Nee" }}</td>
                 <td>{{ collection.CollectedApproved|yesno:"Ja,Nee" }}</td>
                 <td>
-                    {% if not collection.collected %}
+                    {% if not collection.Collected %}
                         <input type="checkbox" name="collection_{{ collection.id }}" value="true">
                     {% endif %}
                 </td>
@@ -30,5 +30,6 @@
             {% endfor %}
         </tbody>
     </table>
+    <button type="submit"><strong>Afhalen bevestigen</strong></button>
 </form>
 {% endblock %}

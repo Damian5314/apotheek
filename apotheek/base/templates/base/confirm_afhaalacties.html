@@ -1,37 +1,13 @@
 {% extends "base/base.html" %}
 
 {% block content %}
-<h1>Beheer Afhaalacties</h1>
-<form method="post" action="{% url 'confirm_afhaalacties' %}">
-    {% csrf_token %}
-    <table>
-        <thead>
-            <tr>
-                <th>Gebruiker</th>
-                <th>Medicijn</th>
-                <th>Datum</th>
-                <th>Afgehaald</th>
-                <th>Goedgekeurd</th>
-                <th>Bevestigen</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for collection in collections %}
-            <tr>
-                <td>{{ collection.user.username }}</td>
-                <td>{{ collection.medicine.name }}</td>
-                <td>{{ collection.date }}</td>
-                <td>{{ collection.collected|yesno:"Ja,Nee" }}</td>
-                <td>{{ collection.collected_approved|yesno:"Ja,Nee" }}</td>
-                <td>
-                    {% if collection.collected and not collection.collected_approved %}
-                        <input type="checkbox" name="approve_{{ collection.id }}" value="true">
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <button type="submit">Bevestigen</button>
-</form>
+<h1>Bevestig Afhaalacties</h1>
+{% for collection in collections %}
+    <strong>Gebruiker: </strong> {{ collection.User.username }}<br>
+    <strong>Medicijn: </strong> {{ collection.Medicine.Name }}<br>
+    <strong>Datum: </strong> {{ collection.Date }}<br>
+    <a href="{% url 'approve_afhaalactie' collection.pk %}" class="nav-item black-link"><button><strong>Approve</strong></button></a>
+    <a href="{% url 'deny_afhaalactie' collection.pk %}" class="nav-item black-link"><button><strong>Deny</strong></button></a><br>
+    <br>
+{% endfor %}
 {% endblock %}
