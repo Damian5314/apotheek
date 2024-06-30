@@ -4,13 +4,13 @@
 <h2>Selecteer een gebruiker</h2>
 
 <table>
-    <thead>
+    <head>
         <tr>
             <th>Gebruiker</th>
             <th>Acties</th>
         </tr>
-    </thead>
-    <tbody>
+    </head>
+    <body>
         {% for user in users %}
         <tr>
             <td>{{ user.username }}</td>
@@ -19,7 +19,7 @@
             </td>
         </tr>
         {% endfor %}
-    </tbody>
+    <tbody>
 </table>
 
 <a href="{% url 'manage_collections' %}"><button><strong>Terug naar Beheer afhaalacties</strong><button></a>

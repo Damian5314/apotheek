@@ -4,6 +4,9 @@ body {
 
 body {
     margin: 0;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-container {
@@ -53,7 +56,11 @@ MenuText {
 
 .apothekers {
     display: flex;
+    text-align: center;
     margin-top: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .apotheker {
@@ -69,8 +76,15 @@ MenuText {
     display: inline;
     margin-right: 10px;
     font-weight: bold;
+    text-align: center;
 }
 
 .medicine-item p {
     display: inline;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center; 
 }
