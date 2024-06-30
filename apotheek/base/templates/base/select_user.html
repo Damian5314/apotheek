@@ -3,24 +3,26 @@
 {% block content %}
 <h2>Selecteer een gebruiker</h2>
 
-<table>
-    <head>
-        <tr>
-            <th>Gebruiker</th>
-            <th>Acties</th>
-        </tr>
-    </head>
-    <body>
-        {% for user in users %}
-        <tr>
-            <td>{{ user.username }}</td>
-            <td>
-                <a href="{% url 'user_history' user.id %}"><button><strong>Bekijk Geschiedenis</strong></button></a>
-            </td>
-        </tr>
-        {% endfor %}
-    <tbody>
-</table>
+<div class="table-container">
+    <table class="center-table">
+        <thead>
+            <tr>
+                <th>Gebruiker</th>
+                <th>Acties</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>
+                    <a href="{% url 'user_history' user.id %}"><button><strong>Bekijk Geschiedenis</strong></button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
-<a href="{% url 'manage_collections' %}"><button><strong>Terug naar Beheer afhaalacties</strong><button></a>
+<a href="{% url 'manage_collections' %}"><button><strong>Terug naar Beheer afhaalacties</strong></button></a>
 {% endblock %}

@@ -4,26 +4,28 @@
 <h2>Afhaalgeschiedenis voor {{ user.username }}</h2>
 
 {% if collections %}
-<table>
-    <thead>
-        <tr>
-            <th>Medicijn</th>
-            <th>Datum</th>
-            <th>Afgehaald</th>
-            <th>Goedgekeurd</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for collection in collections %}
-        <tr>
-            <td>{{ collection.Medicine.Name }}</td>
-            <td>{{ collection.Date }}</td>
-            <td>{{ collection.Collected|yesno:"Ja,Nee" }}</td>
-            <td>{{ collection.CollectedApproved|yesno:"Ja,Nee" }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="table-container">
+    <table class="center-table">
+        <thead>
+            <tr>
+                <th>Medicijn</th>
+                <th>Datum</th>
+                <th>Afgehaald</th>
+                <th>Goedgekeurd</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for collection in collections %}
+            <tr>
+                <td>{{ collection.Medicine.Name }}</td>
+                <td>{{ collection.Date }}</td>
+                <td>{{ collection.Collected|yesno:"Ja,Nee" }}</td>
+                <td>{{ collection.CollectedApproved|yesno:"Ja,Nee" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% else %}
 <p>Geen afhaalgeschiedenis beschikbaar voor deze gebruiker.</p>
 {% endif %}

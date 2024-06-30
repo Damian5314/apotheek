@@ -1,8 +1,5 @@
 body {
     background-color: white;
-}
-
-body {
     margin: 0;
     text-align: center;
     justify-content: center;
@@ -15,7 +12,6 @@ body {
     align-items: center;
     gap: 1rem;
     padding-left: 1rem;
-
 }
 
 .nav-item {
@@ -83,8 +79,16 @@ MenuText {
     display: inline;
 }
 
-th, td {
+th,
+td {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: center; 
+    text-align: center;
+}
+
+.center-table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    text-align: center;
 }
