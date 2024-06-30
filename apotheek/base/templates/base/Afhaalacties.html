@@ -4,32 +4,38 @@
 <h1>Mijn Afhaalacties</h1>
 <form method="post" action="{% url 'update_afhaalacties' %}">
     {% csrf_token %}
-    <table class="center-table">
-        <thead>
-            <tr>
-                <th>Medicijn</th>
-                <th>Datum</th>
-                <th>Afgehaald</th>
-                <th>Goedgekeurd</th>
-                <th>Selecteren</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for collection in collections %}
-            <tr>
-                <td>{{ collection.Medicine.Name }}</td>
-                <td>{{ collection.Date }}</td>
-                <td>{{ collection.Collected|yesno:"Ja,Nee" }}</td>
-                <td>{{ collection.CollectedApproved|yesno:"Ja,Nee" }}</td>
-                <td>
-                    {% if not collection.Collected %}
-                        <input type="checkbox" name="collection_{{ collection.id }}" value="true">
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% if collections %}
+    <div class="table-container">
+        <table class="center-table">
+            <thead>
+                <tr>
+                    <th>Medicijn</th>
+                    <th>Datum</th>
+                    <th>Afgehaald</th>
+                    <th>Goedgekeurd</th>
+                    <th>Selecteren</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for collection in collections %}
+                <tr>
+                    <td>{{ collection.Medicine.Name }}</td>
+                    <td>{{ collection.Date }}</td>
+                    <td>{{ collection.Collected|yesno:"Ja,Nee" }}</td>
+                    <td>{{ collection.CollectedApproved|yesno:"Ja,Nee" }}</td>
+                    <td>
+                        {% if not collection.Collected %}
+                            <input type="checkbox" name="collection_{{ collection.id }}" value="true">
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     <button type="submit"><strong>Afhalen bevestigen</strong></button>
+    {% else %}
+    <p>Nog geen medicijnen af te halen.</p>
+    {% endif %}
 </form>
 {% endblock %}
